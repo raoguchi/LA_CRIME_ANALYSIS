@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Summary</title>
+    <link rel="stylesheet" href="public/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0 1.5rem 4rem 1.5rem;
+        }
+
+        nav {
+            background-color: #ffffff;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            margin-right: 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            color: #007acc;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #222;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ccc;
+        }
+
+        th,
+        td {
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: monospace;
+            background: #eee;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        blockquote {
+            border-left: 4px solid #ccc;
+            margin: 1rem 0;
+            padding-left: 1rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="summary.html">📄 Summary</a>
+        <a href="index.html">📊 Visualization</a>
+    </nav>
+
+    <h1>LA Crime & Municipal Policy Modeling</h1>
+    <h3>Group 16: Yuzhi Tao, Qiyong Zhang, Allen Li, Ryosuke (Alex) Oguchi</h3>
+    <p><strong>Last Updated: 2024</strong></p>
+
+    <hr />
+    <h2>🔎 Overview</h2>
+    <p>This project aims to uncover actionable insights into crime trends in <strong>Los Angeles County</strong> from
+        <strong>January 2020 to January 2024</strong>...</p>
+
+    <hr />
+    <h2>📊 Dataset Summary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Records</td>
+                <td>~982,639 total</td>
+            </tr>
+            <tr>
+                <td>Timespan</td>
+                <td>Jan 2020 - Jan 2024</td>
+            </tr>
+            <tr>
+                <td>Source</td>
+                <td>Los Angeles Open Data Portal</td>
+            </tr>
+            <tr>
+                <td>Format</td>
+                <td>CSV, JSON, GeoJSON</td>
+            </tr>
+            <tr>
+                <td>Access</td>
+                <td>API (limited to 1000 records per call)</td>
+            </tr>
+            <tr>
+                <td>Columns</td>
+                <td>28 total</td>
+            </tr>
+            <tr>
+                <td>Includes</td>
+                <td>Victim demographics, location, time, weapon type</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+    <h2>📅 Project Structure</h2>
+    <pre><code>Project-Files-main/
+├── code.ipynb                # Exploratory Data Analysis & Modeling
+├── lgb_model.txt.gz          # Trained LightGBM model
+├── unique_values.json        # Metadata on feature values
+├── data/
+│   ├── crime.csv.gz              # Full crime dataset
+│   ├── la_crime_data.geojson.gz # Geospatial boundaries
+│   ├── mo_codes.pdf              # Codebook for crime types
+│   ├── subset_ml.csv.gz         # Processed dataset for ML
+│   └── subset_ml.json.gz        # Alternative ML dataset
+</code></pre>
+
+    <hr />
+    <h2>🔢 Goal</h2>
+    <ul>
+        <li>Analyze patterns of crime across time, location, and demographics</li>
+        <li>Build a classification model to predict <strong>crime type</strong></li>
+        <li>Generate insights to support <strong>public safety</strong> and <strong>policy making</strong></li>
+    </ul>
+
+    <hr />
+    <h2>🎯 Modeling Approach</h2>
+    <h3>🔌 Model: LightGBM (Gradient Boosting Classifier)</h3>
+    <h4>✨ Features Used</h4>
+    <ul>
+        <li>MO Codes</li>
+        <li>Time/date of occurrence</li>
+        <li>Precinct location</li>
+        <li>Victim demographics</li>
+        <li>Weapon types</li>
+    </ul>
+
+    <h4>✅ Performance</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Accuracy</td>
+                <td>0.72</td>
+            </tr>
+            <tr>
+                <td>Precision</td>
+                <td>0.73</td>
+            </tr>
+            <tr>
+                <td>Recall</td>
+                <td>0.72</td>
+            </tr>
+            <tr>
+                <td>F1 Score</td>
+                <td>0.71</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+    <h2>🧡 Fairness Evaluation (By Race)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Group</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>White</td>
+                <td>0.7233</td>
+                <td>0.7329</td>
+                <td>0.7233</td>
+                <td>0.7137</td>
+            </tr>
+            <tr>
+                <td>Black</td>
+                <td>0.7021</td>
+                <td>0.7170</td>
+                <td>0.7020</td>
+                <td>0.6907</td>
+            </tr>
+            <tr>
+                <td>Hispanic</td>
+                <td>0.7184</td>
+                <td>0.7279</td>
+                <td>0.7174</td>
+                <td>0.7055</td>
+            </tr>
+            <tr>
+                <td>Other</td>
+                <td>0.7542</td>
+                <td>0.7427</td>
+                <td>0.7542</td>
+                <td>0.7249</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+    <h2>📷 Visual Summary</h2>
+    <h3>🗺️ Crime Frequency by LAPD Precinct</h3>
+    <img src="freq.png" alt="Crime Frequency">
+    <blockquote>Central precinct shows the highest number of reported crimes.</blockquote>
+
+    <h3>📆 Monthly Crime Trends (2020–2024)</h3>
+    <img src="freq_time.png" alt="Crime by Month-Year">
+    <blockquote>Steady rise post-2020, followed by a drop in 2024.</blockquote>
+
+    <hr />
+    <h2>📁 How to Run</h2>
+    <pre><code>git clone &lt;repo-url&gt;
+cd Project-Files-main
+jupyter notebook code.ipynb
+</code></pre>
+
+    <hr />
+    <h2>📅 Future Work</h2>
+    <ul>
+        <li>Include social/economic indicators</li>
+        <li>Use sequence models or spatial clustering</li>
+        <li>Expand fairness analysis beyond race</li>
+    </ul>
+
+    <hr />
+    <h2>🙏 Acknowledgments</h2>
+    <p>Thanks to the LA Open Data initiative and all contributors.</p>
+
+    <hr />
+    <h2>📚 References</h2>
+    <ul>
+        <li><a href="https://data.lacity.org/">LA Open Data Crime Portal</a></li>
+        <li><a href="https://lightgbm.readthedocs.io/">LightGBM Documentation</a></li>
+    </ul>
+
+</body>
+
+</html>
