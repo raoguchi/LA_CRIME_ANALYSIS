@@ -176,7 +176,7 @@ jupyter notebook code.ipynb
 
 ## 🙏 Acknowledgments
 
-Thanks to the Los Angeles Open Data initiative and the communities affected by crime who inspire work toward equitable public safety.
+Thanks to the Los Angeles Open Data initiative and MGTA 452 at Rady School of Management.
 
 ---
 
